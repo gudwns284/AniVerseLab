@@ -1,0 +1,57 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.7'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.lab.ani_verse_lab'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// jpa
+    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // mybatis 
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+    // MySql
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    
+    // jpa or mybatis 둘 중 하나 사용
+    
+    // 데이터 유효성 검사에 유용한 어노테이션(제약조건 검증 어노테이션) 
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//스프링 시큐리티 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// 롬복
+	annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    
+    
+    // JWT 생성 및 검증을 위한 라이브러리
+    implementation 'io.jsonwebtoken:jjwt-api:0.13.0' // 핵심 JWT 인터페이스 & 빌더 API
+    implementation 'io.jsonwebtoken:jjwt-impl:0.13.0' // 실제 JWT 구현체
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.13.0' // JWT를 JSON으로 직렬화/역직렬화 하는데 사용
+
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

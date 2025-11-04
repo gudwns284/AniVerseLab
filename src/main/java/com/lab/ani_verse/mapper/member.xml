@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.pro_jandi.mapper.MemberMapper">
+<!-- https://kyeong8139.tistory.com/55 -->
+   
+   <!-- 표기법 -->
+   <resultMap type="MemberVO" id="memberMap">
+	   	<id column="member_id" property="memberId"/>
+	   	<result column="member_id" property="memberId"/>
+	   	<result column="member_pw" property="memberPw"/>
+	   	<result column="member_name" property="memberName"/>
+	   	<result column="member_regdate" property="memberRegDate"/>
+	   	<collection column="member_id" property="authList" javaType="List" ofType="String" select="findRolesById"/>
+   </resultMap>
+	
+	<!-- MEMBER 등록  -->
+	<insert id="insertMember" parameterType="memberVO">
+		INSERT INTO tb_members(
+			MEMBER_ID, 
+			MEMBER_NAME, 
+			MEMBER_PW
+		) VALUES (
+			#{memberId},
+			#{memberName},
+			#{memberPw}
+		)
+	</insert>
+	
+	<!-- 
+		# MEMBER 권한 등록 
+		@Mapper 쪽의 @Param 사용
+	-->
+	<insert id="insertAuth">
+		INSERT INTO tb_auths(
+			MEMBER_ID,
+			AUTH_NAME
+		) VALUES (
+			#{memberId},
+			#{authName}
+		)
+	</insert>
+	
+	<select id="findRolesById" resultType="String" parameterType="String">
+		SELECT AUTH_NAME FROM tb_auths WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<select id="read" parameterType="String" resultMap="memberMap">
+		SELECT 
+			m.member_id, 
+			member_pw, 
+			member_name, 
+			member_regdate 
+		FROM tb_members m
+		where m.member_id = #{memberId}
+	</select>
+
+</mapper>
