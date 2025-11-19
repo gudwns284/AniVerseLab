@@ -42,7 +42,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
     
-    
+    // 메일 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// 메일 테스트용 thymeleaf 템플릿
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	
     // JWT 생성 및 검증을 위한 라이브러리
     implementation 'io.jsonwebtoken:jjwt-api:0.13.0' // 핵심 JWT 인터페이스 & 빌더 API
     implementation 'io.jsonwebtoken:jjwt-impl:0.13.0' // 실제 JWT 구현체

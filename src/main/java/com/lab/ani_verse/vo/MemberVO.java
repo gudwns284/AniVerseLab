@@ -1,6 +1,8 @@
 package com.lab.ani_verse.vo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,15 +23,15 @@ public class MemberVO {
 	// 권한
 	private List<String> authList;
 	
-//	public Map<String, Object> getClaims() {
-//		//claim 담을 Map
-//		
-//		Map<String, Object> mapClaim = new HashMap<>();
-//		mapClaim.put("memberId", memberId);
-//		mapClaim.put("memberName", memberName);
-//		mapClaim.put("memberRegDate", memberRegDate);
-//		mapClaim.put("authList", authList);
-//		
-//		return mapClaim;
-//	}
+	public Map<String, Object> getClaims() {
+		//claim 담을 Map
+		
+		Map<String, Object> mapClaim = new HashMap<>();
+		mapClaim.put("memberId", memberId);
+		mapClaim.put("memberName", memberName);
+		mapClaim.put("memberRegDate", memberRegDate);
+		mapClaim.put("authList", authList);
+		
+		return mapClaim;
+	}
 }

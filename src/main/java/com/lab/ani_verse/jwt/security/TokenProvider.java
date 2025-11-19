@@ -73,7 +73,7 @@ public class TokenProvider {
 	public String createRefreshToken(String riderId) {
 		Date now = new Date();
 		Date expiryDate = new Date(now.getTime() + accessTokenExpirationTime);
-
+		System.out.println(expiryDate);
 //		return Jwts.builder()
 //				.setSubject(riderId)
 //				.setIssuedAt(now)
